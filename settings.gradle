@@ -1,0 +1,5 @@
+rootProject.name = 'ExpenseManager'
+include 'expensemanager-api'
+include 'expensemanager-core'
+include 'expensemanager-service'
+
