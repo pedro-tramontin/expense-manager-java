@@ -2,7 +2,7 @@ package br.com.pedront.expensemanager.core.service
 
 import br.com.pedront.expensemanager.core.entity.CategoryEntity
 import br.com.pedront.expensemanager.core.repository.CategoryRepository
-import org.apache.log4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -15,11 +15,13 @@ class CategoryService {
     fun create(category: CategoryEntity): CategoryEntity {
 
         return repository!!.save(category)
+
     }
 
     fun select(id: String): CategoryEntity {
 
         return repository!!.findOne(id) ?: return CATEGORY_NULL
+
     }
 
     fun update(category: CategoryEntity): CategoryEntity {
@@ -33,9 +35,7 @@ class CategoryService {
         } else {
             // TODO Should throw some exception here indicating the updating didn't occur because of not founding by the id provided
 
-            LOGGER.error(String
-                    .format("C=CategoryService M=update step=test-exists-fail id=%s",
-                            category.id))
+            LOGGER.error("C=CategoryService M=update step=test-exists-fail id=%s", category.id)
         }
 
         return updatedCategory
@@ -91,6 +91,6 @@ class CategoryService {
     companion object {
         val CATEGORY_NULL = CategoryEntity()
 
-        private val LOGGER = Logger.getLogger(CategoryService::class.java)
+        private val LOGGER = LoggerFactory.getLogger(CategoryService::class.java)
     }
 }

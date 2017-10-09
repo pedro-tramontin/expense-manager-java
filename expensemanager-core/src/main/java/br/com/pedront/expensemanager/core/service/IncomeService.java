@@ -1,31 +1,29 @@
 package br.com.pedront.expensemanager.core.service;
 
-import br.com.pedront.expensemanager.core.entity.EarnEntity;
-import br.com.pedront.expensemanager.core.entity.EarnEntity;
-import br.com.pedront.expensemanager.core.repository.EarnRepository;
-import br.com.pedront.expensemanager.core.repository.ExpenseRepository;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.pedront.expensemanager.core.entity.IncomeEntity;
+import br.com.pedront.expensemanager.core.repository.IncomeRepository;
+
 @Service
-public class EarnService {
+public class IncomeService {
 
-    public static final EarnEntity EARN_NULL = new EarnEntity();
+    public static final IncomeEntity EARN_NULL = new IncomeEntity();
 
-    private static final Logger LOGGER = Logger.getLogger(EarnService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IncomeService.class);
 
     @Autowired
-    private EarnRepository repository;
+    private IncomeRepository repository;
 
-    public EarnEntity create(final EarnEntity earn) {
-        final EarnEntity newEarn = repository.save(earn);
-
-        return newEarn;
+    public IncomeEntity create(final IncomeEntity earn) {
+        return repository.save(earn);
     }
 
-    public EarnEntity get(final String id) {
-        final EarnEntity foundEarn = repository.findOne(id);
+    public IncomeEntity get(final String id) {
+        final IncomeEntity foundEarn = repository.findOne(id);
 
         if (foundEarn == null) {
             return EARN_NULL;
@@ -34,20 +32,20 @@ public class EarnService {
         return foundEarn;
     }
 
-    public EarnEntity update(final EarnEntity earn) {
-        EarnEntity updatedEntity = earn;
+    public IncomeEntity update(final IncomeEntity earn) {
+        IncomeEntity updatedEntity = earn;
 
         if (repository.exists(earn.getId())) {
-            EarnEntity earnEntity = get(earn.getId());
-            if ((earnEntity != EARN_NULL) &&
-                updateIfOtherDifferentFrom(earnEntity, earn)) {
-                updatedEntity = repository.save(earnEntity);
+            IncomeEntity incomeEntity = get(earn.getId());
+            if ((incomeEntity != EARN_NULL) &&
+                    updateIfOtherDifferentFrom(incomeEntity, earn)) {
+                updatedEntity = repository.save(incomeEntity);
             }
         } else {
-            // TODO Should throw some exception here indicating the updating didn't occur because of not founding by the id provided
+            // TODO Should throw some exception here indicating the updating didn't occur because of not founding by the
+            // id provided
 
-            LOGGER.error(String
-                .format("C=EarnService M=update step=test-exists-fail id=%s", earn.getId()));
+            LOGGER.error("C=EarnService M=update step=test-exists-fail id=%s", earn.getId());
         }
 
         return updatedEntity;
@@ -59,14 +57,14 @@ public class EarnService {
         }
     }
 
-    private int hashCoreExpenseFields(EarnEntity earn) {
+    private int hashCoreExpenseFields(IncomeEntity earn) {
         int result = earn.getUser().hashCode();
         result = 31 * result + earn.getCategory().hashCode();
         result = 31 * result + earn.getPeriod().hashCode();
         result = 31 * result + earn.getDatetime().hashCode();
         result = 31 * result + earn.getOriginalDescription().hashCode();
         result = 31 * result + (earn.getUserDescription() != null ? earn.getUserDescription()
-            .hashCode() : 0);
+                .hashCode() : 0);
         result = 31 * result + earn.getValue().hashCode();
         return result;
     }
@@ -83,7 +81,7 @@ public class EarnService {
         return false;
     }
 
-    public boolean updateIfOtherDifferentFrom(EarnEntity earn, EarnEntity other) {
+    public boolean updateIfOtherDifferentFrom(IncomeEntity earn, IncomeEntity other) {
         if (other == null) {
             return false;
         }

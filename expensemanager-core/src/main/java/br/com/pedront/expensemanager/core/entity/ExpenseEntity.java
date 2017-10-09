@@ -25,7 +25,7 @@ public class ExpenseEntity {
     }
 
     public ExpenseEntity(String user, String category, String period, String datetime,
-        String originalDescription, String userDescription, String value) {
+            String originalDescription, String userDescription, String value) {
         this.user = user;
         this.category = category;
         this.period = period;
@@ -102,14 +102,14 @@ public class ExpenseEntity {
     @Override
     public String toString() {
         return "ExpenseEntity{" +
-            "id='" + id + '\'' +
-            ", user='" + user + '\'' +
-            ", category='" + category + '\'' +
-            ", period='" + period + '\'' +
-            ", datetime='" + datetime + '\'' +
-            ", originalDescription='" + originalDescription + '\'' +
-            ", userDescription='" + userDescription + '\'' +
-            ", value='" + value + '\'' +
-            '}';
+                "id='" + id + '\'' +
+                ", user='" + user + '\'' +
+                ", category='" + category + '\'' +
+                ", period='" + period + '\'' +
+                ", datetime='" + datetime + '\'' +
+                ", originalDescription='" + originalDescription + '\'' +
+                ", userDescription='" + userDescription + '\'' +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

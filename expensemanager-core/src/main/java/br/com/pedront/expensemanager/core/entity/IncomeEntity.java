@@ -1,6 +1,11 @@
-package br.com.pedront.expensemanager.api.request;
+package br.com.pedront.expensemanager.core.entity;
 
-public class EarnRequest {
+import org.springframework.data.annotation.Id;
+
+public class IncomeEntity {
+
+    @Id
+    private String id;
 
     private String user;
 
@@ -15,6 +20,28 @@ public class EarnRequest {
     private String userDescription;
 
     private String value;
+
+    public IncomeEntity() {
+    }
+
+    public IncomeEntity(String user, String category, String period, String datetime,
+            String originalDescription, String userDescription, String value) {
+        this.user = user;
+        this.category = category;
+        this.period = period;
+        this.datetime = datetime;
+        this.originalDescription = originalDescription;
+        this.userDescription = userDescription;
+        this.value = value;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUser() {
         return user;
@@ -74,14 +101,15 @@ public class EarnRequest {
 
     @Override
     public String toString() {
-        return "EarnRequest{" +
-            "user='" + user + '\'' +
-            ", category='" + category + '\'' +
-            ", period='" + period + '\'' +
-            ", datetime='" + datetime + '\'' +
-            ", originalDescription='" + originalDescription + '\'' +
-            ", userDescription='" + userDescription + '\'' +
-            ", value='" + value + '\'' +
-            '}';
+        return "EarnEntity{" +
+                "id='" + id + '\'' +
+                ", user='" + user + '\'' +
+                ", category='" + category + '\'' +
+                ", period='" + period + '\'' +
+                ", datetime='" + datetime + '\'' +
+                ", originalDescription='" + originalDescription + '\'' +
+                ", userDescription='" + userDescription + '\'' +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

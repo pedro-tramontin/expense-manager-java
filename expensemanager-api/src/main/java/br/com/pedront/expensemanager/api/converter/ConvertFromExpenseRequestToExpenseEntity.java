@@ -7,8 +7,8 @@ public class ConvertFromExpenseRequestToExpenseEntity {
 
     public static ExpenseEntity convert(ExpenseRequest request) {
         return new ExpenseEntity(request.getUser(), request.getCategory(), request.getPeriod(),
-            request.getDatetime(), request.getOriginalDescription(), request.getUserDescription(),
-            request.getValue());
+                request.getDatetime(), request.getOriginalDescription(), request.getUserDescription(),
+                request.getValue());
     }
 
     public static ExpenseEntity convert(String id, ExpenseRequest request) {

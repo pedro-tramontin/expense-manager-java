@@ -1,25 +1,25 @@
 package br.com.pedront.expensemanager.core.service;
 
-import br.com.pedront.expensemanager.core.entity.ExpenseEntity;
-import br.com.pedront.expensemanager.core.repository.ExpenseRepository;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import br.com.pedront.expensemanager.core.entity.ExpenseEntity;
+import br.com.pedront.expensemanager.core.repository.ExpenseRepository;
 
 @Service
 public class ExpenseService {
 
     public static final ExpenseEntity EXPENSE_NULL = new ExpenseEntity();
 
-    private static final Logger LOGGER = Logger.getLogger(ExpenseService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExpenseService.class);
 
     @Autowired
     private ExpenseRepository repository;
 
     public ExpenseEntity create(final ExpenseEntity expense) {
-        final ExpenseEntity newExpense = repository.save(expense);
-
-        return newExpense;
+        return repository.save(expense);
     }
 
     public ExpenseEntity get(final String id) {
@@ -38,14 +38,14 @@ public class ExpenseService {
         if (repository.exists(expense.getId())) {
             ExpenseEntity expenseEntity = get(expense.getId());
             if ((expenseEntity != EXPENSE_NULL) &&
-                updateIfOtherDifferentFrom(expenseEntity, expense)) {
+                    updateIfOtherDifferentFrom(expenseEntity, expense)) {
                 updatedEntity = repository.save(expenseEntity);
             }
         } else {
-            // TODO Should throw some exception here indicating the updating didn't occur because of not founding by the id provided
+            // TODO Should throw some exception here indicating the updating didn't occur because of not founding by the
+            // id provided
 
-            LOGGER.error(String
-                .format("C=ExpenseService M=update step=test-exists-fail id=%s", expense.getId()));
+            LOGGER.error("C=ExpenseService M=update step=test-exists-fail id=%s", expense.getId());
         }
 
         return updatedEntity;
@@ -64,7 +64,7 @@ public class ExpenseService {
         result = 31 * result + expense.getDatetime().hashCode();
         result = 31 * result + expense.getOriginalDescription().hashCode();
         result = 31 * result + (expense.getUserDescription() != null ? expense.getUserDescription()
-            .hashCode() : 0);
+                .hashCode() : 0);
         result = 31 * result + expense.getValue().hashCode();
         return result;
     }
