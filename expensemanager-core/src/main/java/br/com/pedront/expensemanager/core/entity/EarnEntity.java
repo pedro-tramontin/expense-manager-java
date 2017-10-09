@@ -1,6 +1,11 @@
-package br.com.pedront.expensemanager.api.request;
+package br.com.pedront.expensemanager.core.entity;
 
-public class ExpenseRequest {
+import org.springframework.data.annotation.Id;
+
+public class EarnEntity {
+
+    @Id
+    private String id;
 
     private String user;
 
@@ -15,6 +20,28 @@ public class ExpenseRequest {
     private String userDescription;
 
     private String value;
+
+    public EarnEntity() {
+    }
+
+    public EarnEntity(String user, String category, String period, String datetime,
+        String originalDescription, String userDescription, String value) {
+        this.user = user;
+        this.category = category;
+        this.period = period;
+        this.datetime = datetime;
+        this.originalDescription = originalDescription;
+        this.userDescription = userDescription;
+        this.value = value;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUser() {
         return user;
@@ -74,8 +101,9 @@ public class ExpenseRequest {
 
     @Override
     public String toString() {
-        return "ExpenseRequest{" +
-            "user='" + user + '\'' +
+        return "EarnEntity{" +
+            "id='" + id + '\'' +
+            ", user='" + user + '\'' +
             ", category='" + category + '\'' +
             ", period='" + period + '\'' +
             ", datetime='" + datetime + '\'' +

@@ -1,6 +1,6 @@
 package br.com.pedront.expensemanager.api.request;
 
-public class ExpenseRequest {
+public class EarnRequest {
 
     private String user;
 
@@ -74,7 +74,7 @@ public class ExpenseRequest {
 
     @Override
     public String toString() {
-        return "ExpenseRequest{" +
+        return "EarnRequest{" +
             "user='" + user + '\'' +
             ", category='" + category + '\'' +
             ", period='" + period + '\'' +
