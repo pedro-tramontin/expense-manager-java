@@ -21,6 +21,12 @@ configurations {
     compile.exclude module: "spring-boot-starter-tomcat"
 }
 
+task stage() {
+    dependsOn build, clean
+}
+
+build.mustRunAfter clean
+
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-jetty"
