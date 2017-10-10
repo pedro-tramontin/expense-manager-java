@@ -9,6 +9,7 @@ buildscript {
 }
 
 apply plugin: 'kotlin'
+apply plugin: 'jdepend'
 
 repositories {
     mavenCentral()
@@ -25,6 +26,9 @@ compileTestKotlin {
         jvmTarget = "1.8"
     }
 }
+
+jdependMain.reports.text.enabled = true
+jdependMain.reports.xml.enabled = false
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-data-mongodb:$springBoot_version"
