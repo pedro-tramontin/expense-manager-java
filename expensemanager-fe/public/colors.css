@@ -1,0 +1,19 @@
+/*** Material colors | Start ***/
+
+/* Background Primary */
+.material-bg-primary { background-color: #4a148c }
+.material-bg-primary-darker { background-color: #12005e }
+.material-bg-primary-light { background-color: #7c43bd }
+
+/* Background Secondary */
+.material-bg-secondary { background-color: #ffd600 }
+.material-bg-secondary-darker { background-color: #c7a500 }
+.material-bg-secondary-light { background-color: #ffff52 }
+
+/* Text on primary */
+.material-text-primary { color: #ffffff }
+
+/* Text on secondary */
+.material-text-secondary { color: #000000 }
+
+/*** Material colors | End ***/
