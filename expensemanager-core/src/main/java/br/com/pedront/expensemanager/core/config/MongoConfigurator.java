@@ -11,21 +11,18 @@ import com.mongodb.MongoClientURI;
 @Configuration
 public class MongoConfigurator extends AbstractMongoConfiguration {
 
-    @Value("${mongodb.defaultUri}")
-    private String mondoDefaultUri;
-
-    @Value("${mongodb.database}")
-    private String database;
+    @Value("${MONGODB_URI}")
+    private String mongodbUri;
 
     @Override
     protected String getDatabaseName () {
-        return database;
+        return new MongoClientURI(mongodbUri).getDatabase();
     }
 
     @Override
     public Mongo mongo() throws Exception {
         final String mongodb_uri = System.getProperty("MONGODB_URI", mondoDefaultUri);
 
-        return new MongoClient(new MongoClientURI(mongodb_uri));
+        return new MongoClient(new MongoClientURI(mongodbUri));
     }
 }
