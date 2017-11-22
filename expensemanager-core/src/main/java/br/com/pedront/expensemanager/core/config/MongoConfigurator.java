@@ -21,7 +21,7 @@ public class MongoConfigurator extends AbstractMongoConfiguration {
 
     @Override
     public Mongo mongo() throws Exception {
-        final String mongodb_uri = System.getProperty("MONGODB_URI", mondoDefaultUri);
+        final String mongodb_uri = System.getProperty("MONGODB_URI");
 
         return new MongoClient(new MongoClientURI(mongodbUri));
     }
