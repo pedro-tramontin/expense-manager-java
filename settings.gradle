@@ -3,5 +3,4 @@ rootProject.name = 'ExpenseManager'
 include 'expensemanager-api'
 include 'expensemanager-config'
 include 'expensemanager-core'
-include 'expensemanager-fe'
 
